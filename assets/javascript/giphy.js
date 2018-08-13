@@ -11,17 +11,34 @@ animals.forEach (function(animal) {
 
 function drawButton(name) {
     console.log("drawButton for : " + name);
-    var div= $('<div class="btn-group" role="group" aria-label="First group">');
+    var div = $('<div class="btn-group" role="group" aria-label="First group">');
     div.html(`<button type="button" class="btn btn-secondary" data-value="${name}">${name}</button>`);
     $(".btn-toolbar").append(div);
 }
 
+function drawGiphyResults(data) {
+
+    data.forEach(function(obj) {
+        // Using bootstrap card. http://getbootstrap.com/docs/4.1/components/card/#images
+
+        var div = $('<div class="card" style="width: 18rem;">');
+        var img = $('<img class="card-img-top">');
+        img.attr('src', obj.images.original_still.url);
+
+        var div_p = $('<div class="card-body">');
+        div_p.html(`<p class="card-text"> Ratings: ${obj.rating} </p>`);
+
+        div.append(img, div_p);
+        $(".btn-toolbar").append(div);
+
+    });
+}
 
 // When button is clicked, determine what animal it corresponds to
 // then make giphy API calls.  Use event deleation to add callback event
 // to buttons created after page rendering.
 $(".btn-toolbar").on("click", ".btn", function (event){
-    
+
     var api_key = 'DnKDEbL6X89zDU7delnZ4Avu8a0kURZn';
     /* For the params
         q=<search term>
@@ -36,7 +53,9 @@ $(".btn-toolbar").on("click", ".btn", function (event){
         url: url,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
+        console.log(response.data);
+        // Display giphy images and meta data
+        drawGiphyResults(response.data);
     });
 });
 
