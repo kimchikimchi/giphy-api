@@ -1,0 +1,31 @@
+form {
+    clear: both;
+    margin-bottom: 70px;
+
+}
+
+p {
+    text-align: center;
+    font-family: 'Patua One', cursive;
+    font-size: 20px;
+}
+
+.card {
+    float: left;
+    margin: 5px;
+    background-color: lightsteelblue;
+}
+
+.input-group {
+    float: right;
+    width: 300px;
+}
+
+.btn-group {
+    padding: 5px;
+}
+
+#addEntrySubmit {
+    background: darkred;
+    color: white;
+}

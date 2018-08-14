@@ -31,7 +31,7 @@ function drawGiphyResults(data) {
             'data-state': "still",
         });
         var div_p = $('<div class="card-body">');
-        div_p.html(`<p class="card-text"> Ratings: ${obj.rating} </p>`);
+        div_p.html(`<p class="card-text"> Rating: ${obj.rating.toUpperCase()} </p>`);
 
         div.append(img, div_p);
         $(".giphy").append(div);
@@ -90,6 +90,7 @@ $("#addEntrySubmit").on("click", function(event) {
     console.log(`Adding: ${ $("#addEntry").val().trim() }`);
     animals.push( $("#addEntry").val().trim() );
     drawButtons();
+    $("#addEntry").val("");
 });
 
 $(document).ready(function() {
